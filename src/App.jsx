@@ -32,7 +32,6 @@ const App = () => {
   const [edit, setEdit] = useState(false);
   const [updatedTask, setUpdatedTask] = useState("");
   const [upId, setUpId] = useState("");
-  const [change, setChange] = useState('')
   let handleTask = (tsk) => {
     settask(tsk.target.value);
     settaskError("");
@@ -48,7 +47,6 @@ const App = () => {
       const db = getDatabase();
       set(push(ref(db, "todo/")), {
         todoName: task,
-        img : change,
       }).then(() => {
         setDone("data saved successfully");
       });
@@ -96,11 +94,6 @@ const App = () => {
       setUpdatedTask("");
     }
   };
-
-  let handleChange = (cng) =>{
-      setChange(cng.target.value);
-  };
-
   return (
     <div>
       <form className="max-w-sm mx-auto">
@@ -111,7 +104,6 @@ const App = () => {
           >
             Enter your task
           </label>
-          <input onChange={handleChange} type="file"/>
           <input
             value={task}
             onChange={handleTask}
